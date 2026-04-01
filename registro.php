@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Registro</title>
+</head>
+
+<body>
+
+<?php
+	$nombre = $_POST['nombre'];
+	$apellido = $_POST['apellido'];
+	$email = $_POST['email'];
+	$usuario = $_POST['usuario'];
+	$password = md5($_POST['password']);
+
+if(isset($_POST['newsletter'])){
+	$news="si";
+}else{
+	$news="no";
+}
+
+
+	include("conexion.php");
+
+	$consulta = mysqli_query($conexion, "INSERT INTO usuarios (nombre, email, usuario, password, newsletter) VALUES('$nombre','$email', '$usuario', '$password', '$news')");
+
+	header("Location:form_login.php");
+
+?>	
+    
+
+</body>
+</html>
